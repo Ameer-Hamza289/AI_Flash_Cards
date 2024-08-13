@@ -1,8 +1,7 @@
-
-import Navbar from './components/landing-page/Navbar';
-import Hero from './components/landing-page/Hero';
-import Features from './components/landing-page/Features';
-import Footer from './components/landing-page/Footer';
+import Features from "@/components/landing-page/Features";
+import Footer from "@/components/landing-page/Footer";
+import Hero from "@/components/landing-page/Hero";
+import Navbar from "@/components/landing-page/Navbar";
 
 export default function LandingPage() {
   return (
@@ -10,7 +9,7 @@ export default function LandingPage() {
       <Navbar />
       <Hero />
       <Features />
-      <Footer/>
+      <Footer />
     </div>
   );
 }

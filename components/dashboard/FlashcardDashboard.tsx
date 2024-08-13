@@ -1,8 +1,8 @@
 'use client';
 
 import React, { useState } from 'react';
-import { useRouter } from 'next/router';
-import FlashcardDeckCard from '../FlashcardDashboard/FlashcardDeckCard';
+import { useRouter } from 'next/navigation';
+import FlashcardDeckCard from './FlashcardDeckCard';
 
 interface Deck {
   id: number;
