@@ -29,11 +29,15 @@ const FlashcardDashboard: React.FC = () => {
   };
 
   const handleCreateDeck = () => {
-    router.push('/flashcards/create-deck');
+    // router.push('/flashcards/create-deck');
+    console.log("create card");
+    
   };
 
   const handleEditDeck = (id: number) => {
-    router.push(`/flashcards/${id}`);
+    // router.push(`/flashcards/${id}`);
+    console.log("Edit the flashcard");
+    
   };
 
   const handleDeleteDeck = (id: number) => {
