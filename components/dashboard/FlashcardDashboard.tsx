@@ -1,73 +1,63 @@
-'use client';
 
-import React, { useState } from 'react';
-import { useRouter } from 'next/navigation';
-import FlashcardDeckCard from './FlashcardDeckCard';
 
-interface Deck {
-  id: number;
-  name: string;
-  cards: number;
-  preview: string[];
-}
+import React from 'react';
+import Link from 'next/link';
 
-const FlashcardDashboard: React.FC = () => {
-  const [searchTerm, setSearchTerm] = useState<string>('');
-  const [decks, setDecks] = useState<Deck[]>([
-    { id: 1, name: 'General Knowledge', cards: 50, preview: ['What is the capital of France?', 'What is 2 + 2?'] },
-    { id: 2, name: 'Math', cards: 30, preview: ['What is 10 * 10?', 'What is 100/4?'] },
-    { id: 3, name: 'Science', cards: 20, preview: ['What is H2O?', 'What is the speed of light?'] },
-  ]);
-  const router = useRouter();
-
-  const filteredDecks = decks.filter((deck) =>
-    deck.name.toLowerCase().includes(searchTerm.toLowerCase())
-  );
-
-  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchTerm(e.target.value);
-  };
-
-  const handleCreateDeck = () => {
-    router.push('/flashcards/create-deck');
-  };
-
-  const handleEditDeck = (id: number) => {
-    router.push(`/flashcards/${id}`);
-  };
-
-  const handleDeleteDeck = (id: number) => {
-    setDecks(decks.filter((deck) => deck.id !== id));
-  };
-
+const FlashcardDashboard = ({ title }: { title?: string | undefined }) => {
   return (
-    <div className="p-8">
-      <div className="flex justify-between items-center mb-4">
-        <input
-          type="text"
-          placeholder="Search decks..."
-          value={searchTerm}
-          onChange={handleSearchChange}
-          className="px-4 py-2 border border-gray-300 rounded-lg w-1/3"
-        />
-        <button onClick={handleCreateDeck} className="px-4 py-2 bg-blue-500 text-white rounded-lg">
-          Create Deck/Flashcard
-        </button>
+    <div className="min-h-screen p-8 bg-gray-100 text-black">
+      <h1 className="text-3xl font-bold mb-4">{title || 'Flash Card Title'}</h1>
+      <div className="bg-white p-6 rounded shadow-md">
+        <h2 className="text-xl font-semibold mb-2">Ask a Question</h2>
+        <div className="flex items-center space-x-4">
+          <textarea
+            placeholder="Type your question here..."
+            className="w-[70%] p-3 mb-4 border rounded-lg resize-none h-24"
+          />
+          <button className="bg-purple-500 text-white py-3 px-7 rounded-lg mt-2">
+            Ask AI
+          </button>
+        </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        {filteredDecks.length > 0 ? (
-          filteredDecks.map((deck) => (
-            <FlashcardDeckCard
-              key={deck.id}
-              deck={deck}
-              onEdit={() => handleEditDeck(deck.id)}
-              onDelete={() => handleDeleteDeck(deck.id)}
-            />
-          ))
-        ) : (
-          <p className="text-gray-600">No decks found</p>
-        )}
+      <div className="mt-8">
+        <div className='flex justify-between'>
+          <h2 className="text-xl font-semibold mb-4">Your Recent Questions</h2>
+          <Link href="/flashcard-viewer">
+            <button className="bg-purple-500 text-white p-2 rounded-lg ml-4 hover:bg-blue-600">
+              View Responses
+            </button>
+          </Link>
+        </div>
+        <ul className="space-y-4">
+          <li className="flex justify-between items-center">
+            <span>What is the capital of France?</span>
+            {/* <Link href="/flashcard-viewer">
+              <button className="bg-blue-500 text-white p-2 rounded-lg ml-4 hover:bg-blue-600">
+                View Response
+              </button>
+            </Link> */}
+          </li>
+          <hr className="border-black" />
+          <li className="flex justify-between items-center">
+            <span>How does a combustion engine work?</span>
+            {/* <Link href="/flashcard-viewer">
+              <button className="bg-blue-500 text-white p-2 rounded-lg ml-4 hover:bg-blue-600">
+                View Response
+              </button>
+            </Link> */}
+          </li>
+          <hr className="border-black" />
+          <li className="flex justify-between items-center">
+            <span>Explain the concept of Quantum Physics.</span>
+            {/* <Link href="/flashcard-viewer">
+              <button className="bg-blue-500 text-white p-2 rounded-lg ml-4 hover:bg-blue-600">
+                View Response
+              </button>
+            </Link> */}
+          </li>
+          <hr className="border-black" />
+        </ul>
       </div>
     </div>
   );

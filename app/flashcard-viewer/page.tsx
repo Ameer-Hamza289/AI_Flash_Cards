@@ -83,9 +83,7 @@ const FlashcardViewer = () => {
         <button onClick={handleNext} className="px-4 py-2 bg-purple-500 rounded hover:bg-purple-700">
           Next
         </button>
-        <button onClick={handleShuffle} className="px-4 py-2 bg-purple-500 rounded hover:bg-purple-700">
-          Shuffle
-        </button>
+        
         <button onClick={handleMarkKnown} className="px-4 py-2 bg-green-500 rounded hover:bg-green-700">
           Mark as Known
         </button>
