@@ -6,7 +6,7 @@ import Navbar from "@/components/landing-page/Navbar";
 export default function LandingPage() {
   return (
     <div>
-      <Navbar />
+      {/* <Navbar /> */}
       <Hero />
       <Features />
       <Footer />
