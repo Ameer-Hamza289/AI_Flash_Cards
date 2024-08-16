@@ -13,7 +13,7 @@ const CardPage = () => {
   title = title?.replace(/-/g, " ");
 
   // console.log(title,'title');
-  return <FlashcardDashboard title={title.toString()} />;
+  return <FlashcardDashboard title={title!.toString()} />;
 };
 
 export default CardPage;

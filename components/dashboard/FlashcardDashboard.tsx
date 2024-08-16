@@ -1,7 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 
 const FlashcardDashboard = ({ title }: { title?: string }) => {
+  const [content, setContent] = useState<string>("");
+
+  const handleAsk = async () => {
+    const response = await fetch("/api/agent", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ title, content }),
+    });
+  };
+
   return (
     <div className="min-h-screen p-8 bg-gray-100 text-black">
       <h1 className="text-3xl font-bold mb-4">{title || "Flash Card Title"}</h1>
@@ -11,8 +23,14 @@ const FlashcardDashboard = ({ title }: { title?: string }) => {
           <textarea
             placeholder="Type your question here..."
             className="w-[70%] p-3 mb-4 border rounded-lg resize-none h-24"
+            onChange={(e) => {
+              setContent(e.target.value);
+            }}
           />
-          <button className="bg-purple-500 text-white py-3 px-7 rounded-lg mt-2">
+          <button
+            className="bg-purple-500 text-white py-3 px-7 rounded-lg mt-2"
+            onClick={handleAsk}
+          >
             Ask AI
           </button>
         </div>
