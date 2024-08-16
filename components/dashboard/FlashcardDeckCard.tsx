@@ -1,4 +1,5 @@
 import React from 'react';
+import Navbar from '../landing-page/Navbar';
 
 interface Deck {
   id: number;
@@ -15,6 +16,8 @@ interface FlashcardDeckCardProps {
 
 const FlashcardDeckCard: React.FC<FlashcardDeckCardProps> = ({ deck, onEdit, onDelete }) => {
   return (
+    <>
+    {/* <Navbar/> */}
     <div className="bg-white p-4 rounded-lg shadow-md relative">
       <h2 className="text-lg font-bold mb-2">{deck.name}</h2>
       <p className="text-gray-600 mb-4">Cards: {deck.cards}</p>
@@ -37,6 +40,7 @@ const FlashcardDeckCard: React.FC<FlashcardDeckCardProps> = ({ deck, onEdit, onD
         </button>
       </div>
     </div>
+    </>
   );
 };
 
