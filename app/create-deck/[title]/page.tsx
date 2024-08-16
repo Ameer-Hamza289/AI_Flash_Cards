@@ -1,5 +1,6 @@
 'use client';
 import FlashcardDashboard from '@/components/dashboard/FlashcardDashboard';
+import Navbar from '@/components/landing-page/Navbar';
 import { useParams } from 'next/navigation';
 import React from 'react'
 
@@ -14,7 +15,10 @@ const CardPage = () => {
 
   // console.log(title,'title');
   return (
+    <>
+    <Navbar/>
     <FlashcardDashboard title={title.toString()} />
+    </>
   )
 }
 
