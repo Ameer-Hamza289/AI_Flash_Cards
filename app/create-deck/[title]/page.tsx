@@ -16,7 +16,7 @@ const CardPage = () => {
   // console.log(title,'title');
   return (
     <>
-    <Navbar/>
+    {/* <Navbar/> */}
     <FlashcardDashboard title={title.toString()} />
     </>
   )
