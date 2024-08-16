@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/router';
+import Navbar from '../landing-page/Navbar';
 
 interface Deck {
   id?: number;
@@ -23,6 +24,8 @@ const CreateDeckForm: React.FC<CreateDeckFormProps> = ({ deck = null }) => {
   };
 
   return (
+    <>
+    <Navbar/>
     <div className="p-8">
       <h1 className="text-2xl font-bold mb-4">{deck ? 'Edit Deck' : 'Create Deck'}</h1>
       <div className="mb-4">
@@ -47,6 +50,7 @@ const CreateDeckForm: React.FC<CreateDeckFormProps> = ({ deck = null }) => {
         Save Deck
       </button>
     </div>
+    </>
   );
 };
 
