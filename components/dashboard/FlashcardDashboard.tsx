@@ -1,12 +1,10 @@
+import React from "react";
+import Link from "next/link";
 
-
-import React from 'react';
-import Link from 'next/link';
-
-const FlashcardDashboard = ({ title }: { title?: string | undefined }) => {
+const FlashcardDashboard = ({ title }: { title?: string }) => {
   return (
     <div className="min-h-screen p-8 bg-gray-100 text-black">
-      <h1 className="text-3xl font-bold mb-4">{title || 'Flash Card Title'}</h1>
+      <h1 className="text-3xl font-bold mb-4">{title || "Flash Card Title"}</h1>
       <div className="bg-white p-6 rounded shadow-md">
         <h2 className="text-xl font-semibold mb-2">Ask a Question</h2>
         <div className="flex items-center space-x-4">
@@ -21,7 +19,7 @@ const FlashcardDashboard = ({ title }: { title?: string | undefined }) => {
       </div>
 
       <div className="mt-8">
-        <div className='flex justify-between'>
+        <div className="flex justify-between">
           <h2 className="text-xl font-semibold mb-4">Your Recent Questions</h2>
           <Link href="/flashcard-viewer">
             <button className="bg-purple-500 text-white p-2 rounded-lg ml-4 hover:bg-blue-600">
