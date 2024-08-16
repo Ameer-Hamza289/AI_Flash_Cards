@@ -5,7 +5,7 @@ import Groq from "groq-sdk";
 
 const groq = new Groq({ apiKey: keyGroq });
 
-export async function getGroqChatCompletion() {
+export async function getGroqChatCompletion(title: string, content: string) {
   return groq.chat.completions.create({
     messages: [
       {
@@ -17,6 +17,7 @@ Guidelines:
 2. Generate flashcards that reflect essential information, ensuring the content is well-organized and easy to understand.
 3. Provide a question or cue that prompts the user to recall information related to the topic.
 4. Provide a clear and accurate answer or explanation on the back of the flashcard.
+5. Only generate one flashcard
 
 Format:
 - **Front:** Question or prompt.
@@ -34,7 +35,7 @@ You should adapt to various subjects and levels of complexity based on the user'
       },
       {
         role: "user",
-        content: "tell me your model name",
+        content: `title is ${title}. background is ${content}`,
       },
     ],
     model: "llama3-70b-8192",
@@ -45,21 +46,22 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  console.log("api is hit");
   if (req.method !== "POST") {
     console.log("Not post request");
 
     return res.status(405).json({ message: "Only POST requests are allowed" });
   }
-  const { message } = req.body;
-  if (!message) {
-    console.log("Message is required");
+  const { title, content } = req.body;
+  console.log(req.body);
 
-    return res.status(400).json({ message: "Message is required" });
+  if (!req.body) {
+    console.log("no req body");
+    return res.status(400).json({ message: "req body is required" });
   }
   try {
-    const chatCompletion = await getGroqChatCompletion();
+    const chatCompletion = await getGroqChatCompletion(title, content);
     const completion = chatCompletion.choices[0]?.message?.content || "";
+    console.log(completion);
     res.status(200).json({ message: completion });
   } catch (error: any) {
     console.log("Error", error);
