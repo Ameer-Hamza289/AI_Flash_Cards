@@ -52,7 +52,7 @@ const Dashboard: React.FC = () => {
 
   return (
     <>
-      <Navbar />
+      {/* <Navbar /> */}
       <div className="p-8">
         <h1 className="text-3xl font-bold mb-8">Dashboard</h1>
         <div className="flex gap-3 items-center mb-4">
