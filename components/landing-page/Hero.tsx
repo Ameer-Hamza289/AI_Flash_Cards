@@ -1,39 +1,49 @@
-
-'use client';
-import Link from 'next/link';
-import { useRouter } from 'next/navigation';
-import { SyntheticEvent, useState } from 'react';
+"use client";
+import { handleWebpackExternalForEdgeRuntime } from "next/dist/build/webpack/plugins/middleware-plugin";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { SyntheticEvent, useState } from "react";
 
 const Hero = () => {
-  const [error, setError] = useState<string>('');
-  const [title, setTitle] = useState<string>('');
+  const [error, setError] = useState<string>("");
+  const [title, setTitle] = useState<string>("");
   const router = useRouter();
-  const handleNavigation = (e: SyntheticEvent) => {
-    e.stopPropagation();
-    if (title === '') {
-      setError('The topic of flashcard is required');
+  const handleNavigation = (e?: SyntheticEvent) => {
+    e?.stopPropagation();
+    if (title === "") {
+      setError("The topic of flashcard is required");
       // toast.error('Title is required')
     } else {
-      router.push(`/create-deck/${title.replace(/ /g, '-')}`)
+      router.push(`/create-deck/${title.replace(/ /g, "-")}`);
     }
+  };
+  const handleKeyDown = (e: any) => {
+    e.stopPropagation();
+    if (e.key == "Enter") handleNavigation(e);
+  };
 
-  }
   return (
-    <div className="min-h-screen flex flex-col justify-center items-center bg-black text-white text-center"
+    <div
+      className="min-h-screen flex flex-col justify-center items-center bg-black text-white text-center"
       style={{
         backgroundImage: `url('/bgp.png')`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
+        backgroundSize: "cover",
+        backgroundPosition: "center",
       }}
     >
       <hr className="border-t-2 border-white" />
 
-      <h1 className="text-4xl font-bold mb-4">Create, Manage, and Study Flashcards</h1>
-      <p className="text-xl mb-6">Start your learning journey with our AI-powered flashcard platform.</p>
+      <h1 className="text-4xl font-bold mb-4">
+        Create, Manage, and Study Flashcards
+      </h1>
+      <p className="text-xl mb-6">
+        Start your learning journey with our AI-powered flashcard platform.
+      </p>
       <div className="flex justify-center w-full max-w-lg">
         <input
           type="text"
           value={title}
+          onKeyDown={handleKeyDown}
           onChange={(e) => setTitle(e.target.value)}
           placeholder="Enter the title..."
           className="p-3 w-full rounded-l-lg bg-gray-900 text-white outline-none"
@@ -45,7 +55,9 @@ const Hero = () => {
           Generate
         </button>
       </div>
-      <div className='flex justify-center align-middle p-3 text-red-600'>{error}</div>
+      <div className="flex justify-center align-middle p-3 text-red-600">
+        {error}
+      </div>
     </div>
   );
 };
