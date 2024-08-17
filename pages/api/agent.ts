@@ -60,7 +60,7 @@ export default async function handler(
   try {
     const chatCompletion = await getGroqChatCompletion(title, content);
     const completion = chatCompletion.choices[0]?.message?.content || "";
-    console.log(completion);
+    // console.log(completion);
     res.status(200).json({ message: completion });
   } catch (error: any) {
     console.log("Error", error);

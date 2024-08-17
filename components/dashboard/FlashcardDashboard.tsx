@@ -1,9 +1,12 @@
 import React, { SyntheticEvent, useState } from "react";
 import Link from "next/link";
 import FlashcardDeckCard from "./FlashcardDeckCard";
+import { FlashCard } from "@/type";
 
 const FlashcardDashboard = ({ title }: { title?: string }) => {
   const [content, setContent] = useState<string>("");
+
+  const [falshCard, setFlashCard] = useState<null | FlashCard>(null);
 
   const handleAsk = async () => {
     const response = await fetch("/api/agent", {
@@ -13,6 +16,8 @@ const FlashcardDashboard = ({ title }: { title?: string }) => {
       },
       body: JSON.stringify({ title, content }),
     });
+    console.log(response.body);
+    // setFlashCard(JSON.parse(response))
   };
 
   return (
