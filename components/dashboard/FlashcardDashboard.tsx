@@ -2,14 +2,14 @@
 
 import React from 'react';
 import Link from 'next/link';
-import Navbar from '../landing-page/Navbar';
+// import Navbar from '../landing-page/Navbar';
 
-const FlashcardDashboard = () => {
+const FlashcardDashboard = ({title}:{title:string}) => {
   return (
     <>
     {/* <Navbar/> */}
-    <div className="min-h-screen p-8 bg-gray-100">
-      <h1 className="text-3xl font-bold mb-4">Dashboard</h1>
+    <div className="min-h-screen p-8 bg-gray-100 text-black">
+      <h1 className="text-3xl font-bold mb-4">{title}</h1>
       <div className="bg-white p-6 rounded shadow-md">
         <h2 className="text-xl font-semibold mb-2">Ask a Question</h2>
         <div className="flex items-center space-x-4">
