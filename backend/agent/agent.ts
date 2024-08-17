@@ -7,7 +7,7 @@ import Groq from "groq-sdk";
 const groq = new Groq({ apiKey: keyGroq });
 
 export async function askLLM(title: string, content: string) {
-  return groq.chat.completions.create({
+  const chatCompletion = await groq.chat.completions.create({
     messages: [
       {
         role: "system",
@@ -23,7 +23,8 @@ Guidelines:
 Format:
 - **Front:** Question or prompt.
 - **Back:** Answer or explanation.
-- A json format : { "flashcards": [ {"front": "", "back": ""} ] }
+- A json format : {"front": "", "back": ""}  }
+- only return the json response. no extra sentence or words. 
 
 Examples:
 - **Front:** What is the capital of France?
@@ -41,4 +42,7 @@ You should adapt to various subjects and levels of complexity based on the user'
     ],
     model: "llama3-70b-8192",
   });
+  const response = chatCompletion.choices[0]?.message?.content || "";
+  console.log(response);
+  return response;
 }
