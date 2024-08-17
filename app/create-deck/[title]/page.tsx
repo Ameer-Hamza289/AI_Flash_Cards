@@ -17,7 +17,7 @@ const CardPage = () => {
   return (
     <>
       {/* <Navbar/> */}
-      <FlashcardDashboard title={title.toString()} />
+      <FlashcardDashboard title={title!.toString()} />
     </>
   );
 };
