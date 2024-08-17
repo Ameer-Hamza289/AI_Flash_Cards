@@ -55,9 +55,8 @@ const FlashcardViewer = () => {
 
   return (
     <>
-      <Navbar />
       <div className={`flex flex-col items-center justify-center min-h-screen ${theme === 'dark' ? 'bg-gray-100 text-black' : 'bg-white text-black'}`}>
-        <div className="w-full max-w-3xl mx-auto bg-white p-8 rounded-xl shadow-lg" style={{ border: '1px solid black' }}>
+        <div className="w-full max-w-3xl mx-auto bg-white p-8 rounded-xl shadow-lg my-7" >
           <div className="relative w-full h-64">
             <div
               className={`absolute w-full h-full transition-transform duration-700 ${
