@@ -52,7 +52,6 @@ export default async function handler(
     return res.status(405).json({ message: "Only POST requests are allowed" });
   }
   const { title, content } = req.body;
-  console.log(req.body);
 
   if (!req.body) {
     console.log("no req body");
@@ -68,6 +67,6 @@ export default async function handler(
 
     res
       .status(500)
-      .json({ message: "Error with OpenAI API", error: error.message });
+      .json({ message: "Error with llama API", error: error.message });
   }
 }
