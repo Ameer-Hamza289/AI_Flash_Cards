@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { SyntheticEvent, useState } from "react";
 import Link from "next/link";
+import FlashcardDeckCard from "./FlashcardDeckCard";
 
 const FlashcardDashboard = ({ title }: { title?: string }) => {
   const [content, setContent] = useState<string>("");
@@ -35,7 +36,7 @@ const FlashcardDashboard = ({ title }: { title?: string }) => {
           </button>
         </div>
       </div>
-
+      {/* <FlashcardDeckCard></FlashcardDeckCard> */}
       <div className="mt-8">
         <div className="flex justify-between">
           <h2 className="text-xl font-semibold mb-4">Your Recent Questions</h2>
