@@ -22,9 +22,6 @@ const FlashcardDashboard = ({ title }: { title: string }) => {
     const collectionRef = collection(db, "flashcards");
     await addDoc(collectionRef, flashCard);
   };
-  const printFC = async () => {
-    await getFlashCard();
-  };
 
   return (
     <>
@@ -64,13 +61,6 @@ const FlashcardDashboard = ({ title }: { title: string }) => {
             Save FlashCard
           </button>
         )}
-
-        <button
-          className="bg-purple-500 text-white py-3 px-7 rounded-lg mt-2"
-          onClick={printFC}
-        >
-          Print FC
-        </button>
 
         <div className="mt-8">
           <h2 className="text-xl font-semibold mb-4">Your Recent Questions</h2>
